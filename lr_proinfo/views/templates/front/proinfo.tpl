@@ -28,7 +28,7 @@
 {block name='page_content'}
 
 <div class="container">
-    <h1>{l s='Creation Pro Account' mod="lr_proinfo"}</h1>
+    <h1>{l s='Creation Pro Account' mod='lr_proinfo'}</h1>
     {if isset($successes) && $successes}
         {foreach from=$successes item=success}
             <div class="alert alert-success">
