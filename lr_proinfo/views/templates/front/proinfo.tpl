@@ -48,7 +48,7 @@
     {if isset($noaddress) && $noaddress}
         <div class="alert alert-warning">
             <p>{l s='Please create an address to create a pro account' mod='lr_proinfo'}</p>
-            <a href="{$link->getPageLink('address', true)}" title="{l s='Create my first address' mod='lr_proinfo'}">{l s='Create my first address' mod='lr_proinfo'}</a>
+            <a href="{$link->getPageLink('address', true)|escape:'htmlall':'UTF-8'}" title="{l s='Create my first address' mod='lr_proinfo'}">{l s='Create my first address' mod='lr_proinfo'}</a>
         </div>
     {else}
         {* {foreach from=$addresses item=address}
