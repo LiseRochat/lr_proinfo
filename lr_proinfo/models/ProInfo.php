@@ -50,7 +50,7 @@ class ProInfo extends ObjectModel
             'id_address' => ['type' => self::TYPE_INT, 'validate' => 'isInt', 'required' => true],
             'company' => ['type' => self::TYPE_STRING, 'validate' => 'isString', 'required' => true],
             'manager' => ['type' => self::TYPE_STRING, 'validate' => 'isString', 'required' => true],
-            'siret' => ['type' => self::TYPE_STRING, 'validate' => 'isSiret', 'required' => true],
+            'siret' => ['type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'required' => true],
             'vat_number' => ['type' => self::TYPE_STRING, 'validate' => 'isString', 'required' => true],
             'bank' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
             'iban' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],

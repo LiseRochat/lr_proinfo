@@ -1,0 +1,1 @@
+<a href="{$proInfoLink|escape:'htmlall':'UTF-8'}" title="{l s='Create your Pro account' mod='lr_proinfo'}" rel="nofollow" class="btn btn-primary">{l s='Create your Pro account' mod='lr_proinfo'}</a>

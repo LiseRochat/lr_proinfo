@@ -29,6 +29,8 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+require_once _PS_MODULE_DIR_ . 'lr_proinfo/models/ProInfo.php';
+
 class Lr_proinfo extends Module
 {
     private $html; //Affiche message
@@ -58,7 +60,7 @@ class Lr_proinfo extends Module
      */
     public function install()
     {
-        include(dirname(_FILE_) . '/sql/install.php');
+        include(dirname(__FILE__) . '/sql/install.php');
         Configuration::updateValue('LR_PROINFO_ID_PAGE', 1);
         Configuration::updateValue('LR_PROINFO_ADMIN_EMAIL', 'liserochat@live.fr');
         Configuration::updateValue('LR_PROINFO_SEND_MAIL', false);
@@ -66,12 +68,15 @@ class Lr_proinfo extends Module
         return parent::install() &&
             $this->registerHook('header') &&
             $this->registerHook('backOfficeHeader') &&
-            $this->registerHook('actionObjectCustomerDeleteAfter');
+            $this->registerHook('actionObjectCustomerDeleteAfter') &&
+            $this->registerHook('displayTop') &&
+            $this->registerHook('actionObjectProinfoAddAfter') &&
+            $this->registerHook('displayAdminCustomers');
     }
 
     public function uninstall()
     {
-        include(dirname(_FILE_) . '/sql/uninstall.php');
+        include(dirname(__FILE__) . '/sql/uninstall.php');
         Configuration::deleteByName('LR_PROINFO_ID_PAGE');
         Configuration::deleteByName('LR_PROINFO_ADMIN_EMAIL');
         Configuration::deleteByName('LR_PROINFO_SEND_MAIL');
@@ -271,6 +276,8 @@ class Lr_proinfo extends Module
         foreach (array_keys($form_values) as $key) {
             Configuration::updateValue($key, Tools::getValue($key));
         }
+
+        $this->postSuccess[] = $this->l('Success !!! ');
     }
 
     /**
@@ -291,6 +298,7 @@ class Lr_proinfo extends Module
     {
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
+        $this->registerHook('displayAdminCustomers');
     }
 
     public function hookActionObjectCustomerDeleteAfter($params)
@@ -300,5 +308,85 @@ class Lr_proinfo extends Module
         if (Validate::isLoadedObject($obj)) {
             $obj->delete();
         }
+    }
+
+    public function hookActionObjectProinfoAddAfter($params)
+    {
+        $proInfo = $params['object'];
+        $customer = new Customer(
+            (int)$proInfo->id_customer
+        );
+        $address = new Address(
+            (int)$proInfo->id_address
+        );
+
+        Mail::send(
+            Context::getContext()->language->id,
+            'proinfo',
+            $this->l('New creation pro account'),
+            array(
+                '{firstname}' => (string)$customer->firstname,
+                '{lastname}' => (string)$customer->lastname,
+                '{email}' => (string)$customer->email,
+                '{address}' => (string)$address->address1 . ' ' . $address->address2 . ' ' . $address->postcode . ' ' . $address->city,
+                '{company}' => (string)$proInfo->company,
+                '{manager}' => (string)$proInfo->manager,
+                '{siret}' => (string)$proInfo->siret,
+                '{vat_number}' => (string)$proInfo->vat_number,
+                '{bic}' => (string)$proInfo->bic,
+                '{website}' => (string)$proInfo->website,
+                '{comment}' => (string)$proInfo->comment,
+                '{iban}' => (string)$proInfo->iban,
+            ),
+            Configuration::get('LR_PROINFO_ADMIN_EMAIL'),
+            Configuration::get('PS_SHOP_NAME'),
+            Configuration::get('PS_SHOP_EMAIL'),
+            Configuration::get('PS_SHOP_NAME'),
+            null,
+            null,
+            dirname(__FILE__) . '/mails/'
+        );
+    }
+
+    public function hookDisplayTop()
+    {
+        if ((bool)Context::getContext()->customer->isLogged() === false) {
+            return;
+        }
+
+        $obj = ProInfo::getByIdCustomer((int)Context::getContext()->customer->id);
+        if (Validate::isLoadedObject($obj)) {
+            return;
+        }
+
+        $link = new Link();
+
+        $proInfoLink = $link->getModuleLink('lr_proinfo', 'proinfo');
+        $this->context->smarty->assign(array(
+            'proInfoLink' => $proInfoLink
+        ));
+
+        return $this->display(__FILE__, 'views/templates/hook/top.tpl');
+    }
+
+    public function hookDisplayReassurance()
+    {
+        return $this->hookDisplayTop();
+    }
+
+    public function hookDisplayAdminCustomers($params)
+    {
+        //die(var_dump($params['id_customer']));
+        $obj = ProInfo::getByIdCustomer((int)$params['id_customer']);
+
+        if (!Validate::isLoadedObject($obj)) {
+            return;
+        }
+
+        $this->context->smarty->assign(array(
+            'proInfo' => $obj,
+        ));
+
+        return $this->display(__FILE__, 'views/templates/admin/customer.tpl');
     }
 }

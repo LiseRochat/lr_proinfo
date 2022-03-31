@@ -1,0 +1,23 @@
+ 
+Ask for a new Pro Account 
+
+Customer Name : {firstname} {lastname}
+
+Custommer Email : {email}
+
+{address}
+
+{company}
+
+{manager}
+
+{siret}
+
+{vat_number}
+
+{bic}
+
+{website}
+
+{comment}
+
