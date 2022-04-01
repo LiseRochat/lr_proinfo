@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 2007-2022 PrestaShop
  *
@@ -45,11 +44,9 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
             Tools::redirect($authLink);
         }
 
-        $obj = ProInfo::getByIdCustomer((int)Context::getContext()->customer->id);
-        if (Validate::isLoadedObject($obj) && count($this->postSuccess) <= 0) {
-            Tools::redirect('index.php');
-        }
+        $this->obj = ProInfo::getByIdCustomer((int)Context::getContext()->customer->id);
 
+      
         parent::init();
     }
 
@@ -60,9 +57,9 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
         // $vars = Tools::getAllValues();
         // die(var_dump($vars));
 
-        if (((bool)Tools::isSubmit('lr_validate')) == true) {
-            $this->postProcess();
-        }
+        // if (((bool)Tools::isSubmit('lr_validate')) == true) {
+        //     $this->postProcess();
+        // }
 
         if (count($this->postErrors)) {
             $this->context->smarty->assign(array(
@@ -84,16 +81,61 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
             ));
         }
 
+        $cms = new CMS(
+            (int)Configuration::get('LR_PROINFO_ID_PAGE'),
+            (int)Context::getContext()->language->id,
+            (int)Context::getContext()->shop->id
+        );
+
+        $link = new Link();
+
+        $cmsLink = $link->getCMSLink(
+            $cms,
+            null,
+            true,
+            (int)Context::getContext()->language->id,
+            (int)Context::getContext()->shop->id
+        );
+        
+        if (Validate::isLoadedObject($this->obj)) {
+
+            $company = $this->obj->company;
+            $manager = $this->obj->manager;
+            $siret = $this->obj->siret;
+            $vat_number = $this->obj->vat_number;
+            $bank = $this->obj->bank;
+            $website = $this->obj->website;
+            $comment = $this->obj->comment;
+            $id_address = $this->obj->id_address;
+            $bic = $this->obj->bic;
+
+        } else {
+
+            $company = Tools::getValue('lr_company');
+            $manager = Tools::getValue('lr_manager');
+            $siret = Tools::getValue('lr_siret');
+            $vat_number = Tools::getValue('lr_vat_number');
+            $bank = Tools::getValue('lr_bank');
+            $website = Tools::getValue('lr_website');
+            $comment = Tools::getValue('lr_comment');
+            $id_address = Tools::getValue('id_address');
+            $bic = Tools::getValue('lr_bic');
+
+        }
+
         $this->context->smarty->assign(array(
             'addresses' => $this->context->customer->getAddresses($this->context->language->id),
-            'lr_company' => Tools::getValue('lr_company'),
-            'lr_manager' => Tools::getValue('lr_manager'),
-            'lr_siret' => Tools::getValue('lr_siret'),
-            'lr_vat_number' => Tools::getValue('lr_vat_number'),
-            'lr_bank' => Tools::getValue('lr_bank'),
-            'lr_bic' => Tools::getValue('lr_bic'),
-            'lr_website' => Tools::getValue('lr_website'),
-            'lr_comment' => Tools::getValue('lr_comment')
+            'lr_company' => $company,
+            'lr_manager' => $manager,
+            'lr_siret' => $siret,
+            'lr_vat_number' => $vat_number,
+            'lr_bank' => $bank,
+            'lr_bic' => $bic,
+            'lr_website' => $website,
+            'lr_comment' => $comment,
+            'lr_id_address' => $id_address,
+            'cmsLink' => $cmsLink,
+            
         ));
 
         $this->setTemplate('module:lr_proinfo/views/templates/front/proinfo.tpl');
