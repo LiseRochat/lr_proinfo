@@ -41,6 +41,8 @@ class ProInfo extends ObjectModel
     public $bic;
     public $website;
     public $comment;
+    public $active;
+    public $mailsent;
 
     public static $definition = [
         'table' => 'lr_proinfo',
@@ -56,7 +58,9 @@ class ProInfo extends ObjectModel
             'iban' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
             'bic' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
             'website' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
-            'comment' => ['type' => self::TYPE_HTML, 'validate' => 'isCleanHTML']
+            'comment' => ['type' => self::TYPE_HTML, 'validate' => 'isCleanHTML'],
+            'active' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
+            'mailsent' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool']
         ],
     ];
 
