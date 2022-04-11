@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 2007-2022 PrestaShop
  *
@@ -419,6 +420,14 @@ class Lr_proinfo extends Module
             'LR_PROINFO_SEND_MAIL' => Configuration::get('LR_PROINFO_SEND_MAIL'),
             'LR_PROINFO_ADMIN_EMAIL' => Configuration::get('LR_PROINFO_ADMIN_EMAIL'),
             'LR_PROINFO_ID_PAGE' => Configuration::get('LR_PROINFO_ID_PAGE'),
+            'LR_PROINFO_SIRET' => Configuration::get('LR_PROINFO_SIRET'),
+            'LR_PROINFO_VAT_NUMBER' => Configuration::get('LR_PROINFO_VAT_NUMBER'), 
+            'LR_PROINFO_BANK_NAME' => Configuration::get('LR_PROINFO_BANK_NAME'),
+            'LR_PROINFO_IBAN' => Configuration::get('LR_PROINFO_IBAN'),
+            'LR_PROINFO_IBAN' => Configuration::get('LR_PROINFO_IBAN'),
+            'LR_PROINFO_BIC' => Configuration::get('LR_PROINFO_BIC'),
+            'LR_PROINFO_WEBSITE' => Configuration::get('LR_PROINFO_WEBSITE'),
+            'LR_PROINFO_COMMENT' => Configuration::get('LR_PROINFO_COMMENT'),
         );
     }
 
@@ -450,6 +459,7 @@ class Lr_proinfo extends Module
                 'Error : The field cms is not valid'
             );
         }
+        
     }
 
     /**
