@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <label for="lr_manager">{l s='Name of Manager' mod='lr_proinfo'}<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="lr_manager" name="lr_manager" placeholder="{l s='Name of Your Manager'}" {if isset($lr_manager) && $lr_manager} value="{$lr_manager|escape:'htmlall':'UTF-8'}"{/if} required> 
+                    <input type="text" class="form-control" id="lr_manager" name="lr_manager" placeholder="{l s='Name of Your Manager' mod='lr_proinfo'}" {if isset($lr_manager) && $lr_manager} value="{$lr_manager|escape:'htmlall':'UTF-8'}"{/if} required> 
                 </div>
                 {if $LR_PROINFO_SIRET == true}
                     <div class="form-group">
@@ -121,14 +121,6 @@
                         <textarea class="form-control proInfo-textarea" id="lr_comment" name="lr_comment"  rows="3">{if isset($lr_comment) && $lr_comment}{$lr_comment|escape:'htmlall':'UTF-8'}{/if}</textarea>
                     </div>
                 {/if}
-                {* <div class="form-group">
-                    <label for="lr_id">{l s='Photocopy of Both Sides Identity Card'}<span class="required">*</span></label>
-                    <input type="file" class="form-control" id="lr_id" name="lr_id" required>
-                </div>
-                <div class="form-group">
-                    <label for="lr_fileCompany">{l s='File of your company'}<span class="required">*</span></label>
-                    <input type="file" class="form-control" id="lr_fileCompany" name="lr_fileCompany" required>
-                </div> *}
                 <button type="submit" name="lr_validate" id="lr_validate" class="btn btn-primary">{l s='Submit' mod='lr_proinfo'}</button>
             </form>
         {/if}
