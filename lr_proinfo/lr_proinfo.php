@@ -476,7 +476,7 @@ class Lr_proinfo extends Module
 
         if (Validate::isLoadedObject($obj)) {
             $this->context->smarty->assign(array(
-                'proInfoValide' => $obj->active,
+                'proInfo'=>$obj,
             ));
         }
         return $this->display(__FILE__, '/views/templates/hook/myaccount.tpl');
