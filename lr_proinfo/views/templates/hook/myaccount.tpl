@@ -24,16 +24,15 @@
 *}
 
 {* Ajout d'une condition : le compte doit etre créer pour avoir une card en plus sur sa fiche client *}
-{if !empty($id_lr_proinfo)}
-
+{if $proInfo->manager != null }
 <a id="lr_proinfoLink" href="{$link->getModuleLink('lr_proinfo', 'proinfo', ['edit' => true])|escape:'htmlall':'UTF-8'}" title="{l s='Pro account' mod='lr_proinfo'}" rel="nofollow" class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
     <span class="link-item">
         <i class="material-icons">person_add</i>
             {l s='Pro account'  mod='lr_proinfo'}
-                {if $proInfoValide == 1} 
+                {if $proInfo->active == 1} 
                     {l s='(actif)' mod='lr_proinfo'}
                 {/if}   
-                {if $proInfoValide == 0} 
+                {if $proInfo->active == 0} 
                     {l s='(waiting for validation)' mod='lr_proinfo'} 
                 {/if}
     </span>
