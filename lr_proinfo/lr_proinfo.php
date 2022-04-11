@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 2007-2022 PrestaShop
  *
@@ -35,7 +36,7 @@ class Lr_proinfo extends Module
     private $html; //Affiche message
     private $postErrors = array(); //Enregistre toutes les erreurs
     private $postSuccess = array(); //Enregistre toutes les succès
-   
+
 
     public function __construct()
     {
@@ -64,6 +65,13 @@ class Lr_proinfo extends Module
         Configuration::updateValue('LR_PROINFO_ID_PAGE', 1);
         Configuration::updateValue('LR_PROINFO_ADMIN_EMAIL', 'liserochat@live.fr');
         Configuration::updateValue('LR_PROINFO_SEND_MAIL', false);
+        Configuration::updateValue('LR_PROINFO_SIRET', null);
+        Configuration::updateValue('LR_PROINFO_VAT_NUMBER', null);
+        Configuration::updateValue('LR_PROINFO_BANK_NAME', null);
+        Configuration::updateValue('LR_PROINFO_IBAN', null);
+        Configuration::updateValue('LR_PROINFO_BIC', null);
+        Configuration::updateValue('LR_PROINFO_WEBSITE', null);
+        Configuration::updateValue('LR_PROINFO_COMMENT', null);
 
         $this->installModuleTab(
             'AdminLr_Proinfo',
@@ -88,6 +96,13 @@ class Lr_proinfo extends Module
         Configuration::deleteByName('LR_PROINFO_ID_PAGE');
         Configuration::deleteByName('LR_PROINFO_ADMIN_EMAIL');
         Configuration::deleteByName('LR_PROINFO_SEND_MAIL');
+        Configuration::deleteByName('LR_PROINFO_SIRET');
+        Configuration::deleteByName('LR_PROINFO_VAT_NUMBER');
+        Configuration::deleteByName('LR_PROINFO_BANK_NAME');
+        Configuration::deleteByName('LR_PROINFO_IBAN');
+        Configuration::deleteByName('LR_PROINFO_BIC');
+        Configuration::deleteByName('LR_PROINFO_WEBSITE');
+        Configuration::deleteByName('LR_PROINFO_COMMENT');
 
         $this->uninstallModuleTab('AdminLr_Proinfo');
 
@@ -238,13 +253,155 @@ class Lr_proinfo extends Module
                         'hint' => $this->l('Select the page'),
                         'name' => 'LR_PROINFO_ID_PAGE',
                         'class' => 'chosen',
-                        'options' => array(
+                        'options' =>
+                        array(
                             'query' => $cms,
                             'id' => 'id_cms',
                             'name' => 'meta_title'
                         )
 
-                    )
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You need Siret of company'),
+                        'name' => 'LR_PROINFO_SIRET',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you want that customer pro inform his siret'),
+                        'hint' => $this->l('Set not if you dont need siret of pro customer'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You need Vat Number of company'),
+                        'name' => 'LR_PROINFO_VAT_NUMBER',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you want that customer pro inform his vat number'),
+                        'hint' => $this->l('Set not if you dont need vat number of pro customer'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You need bank name of company'),
+                        'name' => 'LR_PROINFO_BANK_NAME',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you want that customer pro inform bank name'),
+                        'hint' => $this->l('Set not if you dont need bank name of pro customer'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You need iban of company'),
+                        'name' => 'LR_PROINFO_IBAN',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you want that customer pro inform his iban'),
+                        'hint' => $this->l('Set not if you dont need iban of pro customer'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You need bic number of company'),
+                        'name' => 'LR_PROINFO_BIC',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you want that customer pro inform his bic'),
+                        'hint' => $this->l('Set not if you dont need bic of pro customer'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You need website of company'),
+                        'name' => 'LR_PROINFO_WEBSITE',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you want that customer pro inform his website'),
+                        'hint' => $this->l('Set not if you dont need website of pro customer'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You authorize pro customer to write additional information'),
+                        'name' => 'LR_PROINFO_COMMENT',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you authorize pro customer write additional information'),
+                        'hint' => $this->l('Set not if you dont authorize pro customer write additionnal information'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+
                 ),
 
                 'submit' => array(
@@ -263,12 +420,21 @@ class Lr_proinfo extends Module
             'LR_PROINFO_SEND_MAIL' => Configuration::get('LR_PROINFO_SEND_MAIL'),
             'LR_PROINFO_ADMIN_EMAIL' => Configuration::get('LR_PROINFO_ADMIN_EMAIL'),
             'LR_PROINFO_ID_PAGE' => Configuration::get('LR_PROINFO_ID_PAGE'),
+            'LR_PROINFO_SIRET' => Configuration::get('LR_PROINFO_SIRET'),
+            'LR_PROINFO_VAT_NUMBER' => Configuration::get('LR_PROINFO_VAT_NUMBER'), 
+            'LR_PROINFO_BANK_NAME' => Configuration::get('LR_PROINFO_BANK_NAME'),
+            'LR_PROINFO_IBAN' => Configuration::get('LR_PROINFO_IBAN'),
+            'LR_PROINFO_IBAN' => Configuration::get('LR_PROINFO_IBAN'),
+            'LR_PROINFO_BIC' => Configuration::get('LR_PROINFO_BIC'),
+            'LR_PROINFO_WEBSITE' => Configuration::get('LR_PROINFO_WEBSITE'),
+            'LR_PROINFO_COMMENT' => Configuration::get('LR_PROINFO_COMMENT'),
         );
     }
 
     protected function postValidation()
     {
-        if (!Tools::getValue('LR_PROINFO_ADMIN_EMAIL')
+        if (
+            !Tools::getValue('LR_PROINFO_ADMIN_EMAIL')
             || !Validate::isEmail(Tools::getValue('LR_PROINFO_ADMIN_EMAIL'))
         ) {
             $this->postErrors[] = $this->l(
@@ -276,7 +442,8 @@ class Lr_proinfo extends Module
             );
         }
 
-        if (Tools::getValue('LR_PROINFO_SEND_MAIL')
+        if (
+            Tools::getValue('LR_PROINFO_SEND_MAIL')
             && !Validate::isBool(Tools::getValue('LR_PROINFO_SEND_MAIL'))
         ) {
             $this->postErrors[] = $this->l(
@@ -284,13 +451,71 @@ class Lr_proinfo extends Module
             );
         }
 
-        if (Tools::getValue('LR_PROINFO_ID_PAGE')
+        if (
+            Tools::getValue('LR_PROINFO_ID_PAGE')
             && !Validate::isInt(Tools::getValue('LR_PROINFO_ID_PAGE'))
         ) {
             $this->postErrors[] = $this->l(
                 'Error : The field cms is not valid'
             );
         }
+        if (
+            Tools::getValue('LR_PROINFO_SIRET')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_SIRET'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable siret is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_VAT_NUMBER')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_VAT_NUMBER'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable vat number is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_BANK_NAME')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_BANK_NAME'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable bank name is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_IBAN')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_IBAN'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable iban is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_BIC')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_BIC'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable bic is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_WEBSITE')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_WEBSITE'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable website is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_COMMENT')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_COMMENT'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable comment is not valid'
+            );
+        }
+        
     }
 
     /**
@@ -325,7 +550,6 @@ class Lr_proinfo extends Module
     {
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
-
     }
 
     public function hookActionObjectCustomerDeleteAfter($params)
@@ -390,9 +614,9 @@ class Lr_proinfo extends Module
         $customer = new Customer(
             (int)$proInfo->id_customer
         );
-    
+
         if ((bool)$proInfo->active === true && (bool)$proInfo->mailsent === false) {
-            
+
             $sent = Mail::send(
                 Context::getContext()->language->id,
                 'customer',
@@ -404,7 +628,7 @@ class Lr_proinfo extends Module
                     '{message}' => $this->l('Your account has been validated')
                 ),
                 $customer->email,
-                $customer->firstname.' '.$customer->lastname,
+                $customer->firstname . ' ' . $customer->lastname,
                 Configuration::get('PS_SHOP_EMAIL'),
                 Configuration::get('PS_SHOP_NAME'),
                 null,
@@ -413,16 +637,15 @@ class Lr_proinfo extends Module
 
             );
 
-           
+
             Db::getInstance()->update(
                 'lr_proinfo',
                 array(
                     'mailsent' => $sent,
                 ),
-                'id_lr_proinfo = '.(int)$proInfo->id
+                'id_lr_proinfo = ' . (int)$proInfo->id
             );
-        } 
-        
+        }
     }
 
     public function hookDisplayTop()
@@ -459,8 +682,8 @@ class Lr_proinfo extends Module
         if (!Validate::isLoadedObject($obj)) {
             return;
         }
-        
-        $editUrl = 'index.php?controller=AdminLr_Proinfo&id_lr_proinfo='. (int)$obj->id. '&updatelr_proinfo&token='. Tools::getAdminTokenLite('AdminLr_Proinfo');
+
+        $editUrl = 'index.php?controller=AdminLr_Proinfo&id_lr_proinfo=' . (int)$obj->id . '&updatelr_proinfo&token=' . Tools::getAdminTokenLite('AdminLr_Proinfo');
 
         $this->context->smarty->assign(array(
             'proInfo' => $obj,
@@ -476,7 +699,7 @@ class Lr_proinfo extends Module
 
         if (Validate::isLoadedObject($obj)) {
             $this->context->smarty->assign(array(
-                'proInfo'=>$obj,
+                'proInfo' => $obj,
             ));
         }
         return $this->display(__FILE__, '/views/templates/hook/myaccount.tpl');
