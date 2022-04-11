@@ -135,14 +135,14 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
             'lr_comment' => $comment,
             'lr_id_address' => $id_address,
             'cmsLink' => $cmsLink,
-            'LR_PROINFO_SIRET' => Configuration::get('LR_PROINFO_SIRET'),
-            'LR_PROINFO_VAT_NUMBER' => Configuration::get('LR_PROINFO_VAT_NUMBER'), 
-            'LR_PROINFO_BANK_NAME' => Configuration::get('LR_PROINFO_BANK_NAME'),
-            'LR_PROINFO_IBAN' => Configuration::get('LR_PROINFO_IBAN'),
-            'LR_PROINFO_IBAN' => Configuration::get('LR_PROINFO_IBAN'),
-            'LR_PROINFO_BIC' => Configuration::get('LR_PROINFO_BIC'),
-            'LR_PROINFO_WEBSITE' => Configuration::get('LR_PROINFO_WEBSITE'),
-            'LR_PROINFO_COMMENT' => Configuration::get('LR_PROINFO_COMMENT'),
+            'LR_PROINFO_SIRET' => (bool)Configuration::get('LR_PROINFO_SIRET'),
+            'LR_PROINFO_VAT_NUMBER' => (bool)Configuration::get('LR_PROINFO_VAT_NUMBER'), 
+            'LR_PROINFO_BANK_NAME' => (bool)Configuration::get('LR_PROINFO_BANK_NAME'),
+            'LR_PROINFO_IBAN' => (bool)Configuration::get('LR_PROINFO_IBAN'),
+            'LR_PROINFO_IBAN' => (bool)Configuration::get('LR_PROINFO_IBAN'),
+            'LR_PROINFO_BIC' => (bool)Configuration::get('LR_PROINFO_BIC'),
+            'LR_PROINFO_WEBSITE' => (bool)Configuration::get('LR_PROINFO_WEBSITE'),
+            'LR_PROINFO_COMMENT' => (bool)Configuration::get('LR_PROINFO_COMMENT'),
             
             
         ));
