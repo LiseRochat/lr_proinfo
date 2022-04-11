@@ -64,6 +64,13 @@ class Lr_proinfo extends Module
         Configuration::updateValue('LR_PROINFO_ID_PAGE', 1);
         Configuration::updateValue('LR_PROINFO_ADMIN_EMAIL', 'liserochat@live.fr');
         Configuration::updateValue('LR_PROINFO_SEND_MAIL', false);
+        Configuration::updateValue('LR_PROINFO_SIRET', null);
+        Configuration::updateValue('LR_PROINFO_VAT_NUMBER', null);
+        Configuration::updateValue('LR_PROINFO_BANK_NAME', null);
+        Configuration::updateValue('LR_PROINFO_IBAN', null);
+        Configuration::updateValue('LR_PROINFO_BIC', null);
+        Configuration::updateValue('LR_PROINFO_WEBSITE', null);
+        Configuration::updateValue('LR_PROINFO_COMMENT', null);
 
         $this->installModuleTab(
             'AdminLr_Proinfo',
@@ -88,6 +95,13 @@ class Lr_proinfo extends Module
         Configuration::deleteByName('LR_PROINFO_ID_PAGE');
         Configuration::deleteByName('LR_PROINFO_ADMIN_EMAIL');
         Configuration::deleteByName('LR_PROINFO_SEND_MAIL');
+        Configuration::deleteByName('LR_PROINFO_SIRET');
+        Configuration::deleteByName('LR_PROINFO_VAT_NUMBER');
+        Configuration::deleteByName('LR_PROINFO_BANK_NAME');
+        Configuration::deleteByName('LR_PROINFO_IBAN');
+        Configuration::deleteByName('LR_PROINFO_BIC');
+        Configuration::deleteByName('LR_PROINFO_WEBSITE');
+        Configuration::deleteByName('LR_PROINFO_COMMENT');
 
         $this->uninstallModuleTab('AdminLr_Proinfo');
 
@@ -249,7 +263,7 @@ class Lr_proinfo extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('You need Siret of company'),
-                        'name' => 'siret',
+                        'name' => 'LR_PROINFO_SIRET',
                         'is_bool' => true,
                         'desc' => $this->l('Use this if you want that customer pro inform his siret'),
                         'hint' => $this->l('Set not if you dont need siret of pro customer'),
@@ -269,7 +283,7 @@ class Lr_proinfo extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('You need Vat Number of company'),
-                        'name' => 'vat_number',
+                        'name' => 'LR_PROINFO_VAT_NUMBER',
                         'is_bool' => true,
                         'desc' => $this->l('Use this if you want that customer pro inform his vat number'),
                         'hint' => $this->l('Set not if you dont need vat number of pro customer'),
@@ -289,7 +303,7 @@ class Lr_proinfo extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('You need bank name of company'),
-                        'name' => 'bank',
+                        'name' => 'LR_PROINFO_BANK_NAME',
                         'is_bool' => true,
                         'desc' => $this->l('Use this if you want that customer pro inform bank name'),
                         'hint' => $this->l('Set not if you dont need bank name of pro customer'),
@@ -309,7 +323,7 @@ class Lr_proinfo extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('You need iban of company'),
-                        'name' => 'iban',
+                        'name' => 'LR_PROINFO_IBAN',
                         'is_bool' => true,
                         'desc' => $this->l('Use this if you want that customer pro inform his iban'),
                         'hint' => $this->l('Set not if you dont need iban of pro customer'),
@@ -329,7 +343,7 @@ class Lr_proinfo extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('You need bic number of company'),
-                        'name' => 'bic',
+                        'name' => 'LR_PROINFO_BIC',
                         'is_bool' => true,
                         'desc' => $this->l('Use this if you want that customer pro inform his bic'),
                         'hint' => $this->l('Set not if you dont need bic of pro customer'),
@@ -349,7 +363,7 @@ class Lr_proinfo extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('You need website of company'),
-                        'name' => 'website',
+                        'name' => 'LR_PROINFO_WEBSITE',
                         'is_bool' => true,
                         'desc' => $this->l('Use this if you want that customer pro inform his website'),
                         'hint' => $this->l('Set not if you dont need website of pro customer'),
@@ -369,7 +383,7 @@ class Lr_proinfo extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('You authorize pro customer to write additional information'),
-                        'name' => 'comment',
+                        'name' => 'LR_PROINFO_COMMENT',
                         'is_bool' => true,
                         'desc' => $this->l('Use this if you authorize pro customer write additional information'),
                         'hint' => $this->l('Set not if you dont authorize pro customer write additionnal information'),
