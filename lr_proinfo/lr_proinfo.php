@@ -263,11 +263,11 @@ class Lr_proinfo extends Module
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('You need Siret of company'),
+                        'label' => $this->l('You need SIRET of company'),
                         'name' => 'LR_PROINFO_SIRET',
                         'is_bool' => true,
-                        'desc' => $this->l('Use this if you want that customer pro inform his siret'),
-                        'hint' => $this->l('Set not if you dont need siret of pro customer'),
+                        'desc' => $this->l('Use this if you want that customer pro inform his SIRET'),
+                        'hint' => $this->l('Set not if you dont need SIRET of pro customer'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
@@ -283,11 +283,11 @@ class Lr_proinfo extends Module
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('You need Vat Number of company'),
+                        'label' => $this->l('You need VAT Number of company'),
                         'name' => 'LR_PROINFO_VAT_NUMBER',
                         'is_bool' => true,
-                        'desc' => $this->l('Use this if you want that customer pro inform his vat number'),
-                        'hint' => $this->l('Set not if you dont need vat number of pro customer'),
+                        'desc' => $this->l('Use this if you want that customer pro inform his VAT number'),
+                        'hint' => $this->l('Set not if you dont need VAT number of pro customer'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
