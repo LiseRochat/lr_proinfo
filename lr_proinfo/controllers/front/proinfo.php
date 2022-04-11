@@ -237,6 +237,15 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
 
             if (!count($this->postErrors)) {
 
+                // Si l'objet proInfo du client est bien instancé dans init
+                if (Validate::isLoadedObject($this->obj)) {
+                    // donc on a juste à préciser que $proInfo c'est $this->obj
+                    $proInfo = $this->obj;
+                } else {
+                    // Sinon on crée une nouvelle entrée
+                    $proInfo = new ProInfo();
+                }
+
                 $proInfo = new ProInfo();
                 $proInfo->id_customer = (int)$this->context->customer->id;
                 $proInfo->id_address = (int)Tools::getValue('lr_idaddress');
