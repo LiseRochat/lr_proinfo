@@ -80,11 +80,11 @@
                     <input type="text" class="form-control" id="lr_manager" name="lr_manager" placeholder="{l s='Name of Your Manager'}" {if isset($lr_manager) && $lr_manager} value="{$lr_manager|escape:'htmlall':'UTF-8'}"{/if} required> 
                 </div>
                 <div class="form-group">
-                    <label for="lr_siret">{l s='Your Siret' mod='lr_proinfo'}<span class="required">*</span></label>
+                    <label for="lr_siret">{l s='Your Siret' mod='lr_proinfo'}</label>
                     <input type="text" class="form-control" id="lr_siret" name="lr_siret" placeholder="{l s='Your Siret' mod='lr_proinfo'}" {if isset($lr_siret) && $lr_siret} value="{$lr_siret|escape:'htmlall':'UTF-8'}"{/if}required>
                 </div>
                 <div class="form-group">
-                    <label for="lr_vat_number">{l s='Your Vat Number' mod='lr_proinfo'}<span class="required">*</span></label>
+                    <label for="lr_vat_number">{l s='Your Vat Number' mod='lr_proinfo'}</label>
                     <input type="text" class="form-control" id="lr_vat_number" name="lr_vat_number" placeholder="{l s='Your Vat Number' mod='lr_proinfo'}" {if isset($lr_vat_number) && $lr_vat_number} value="{$lr_vat_number|escape:'htmlall':'UTF-8'}"{/if}required>
                 </div>
                 <div class="form-group">
