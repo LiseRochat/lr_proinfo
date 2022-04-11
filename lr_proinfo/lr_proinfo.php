@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 2007-2022 PrestaShop
  *
@@ -36,12 +35,13 @@ class Lr_proinfo extends Module
     private $html; //Affiche message
     private $postErrors = array(); //Enregistre toutes les erreurs
     private $postSuccess = array(); //Enregistre toutes les succès
+   
 
     public function __construct()
     {
         $this->name = 'lr_proinfo';
         $this->tab = 'front_office_features';
-        $this->version = '2.0.0';
+        $this->version = '3.0.1';
         $this->author = 'Lise ';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -65,13 +65,21 @@ class Lr_proinfo extends Module
         Configuration::updateValue('LR_PROINFO_ADMIN_EMAIL', 'liserochat@live.fr');
         Configuration::updateValue('LR_PROINFO_SEND_MAIL', false);
 
+        $this->installModuleTab(
+            'AdminLr_Proinfo',
+            'AdminParentCustomer',
+            $this->l('Pro Infos')
+        );
+
         return parent::install() &&
             $this->registerHook('header') &&
             $this->registerHook('backOfficeHeader') &&
             $this->registerHook('actionObjectCustomerDeleteAfter') &&
             $this->registerHook('displayTop') &&
             $this->registerHook('actionObjectProinfoAddAfter') &&
-            $this->registerHook('displayAdminCustomers');
+            $this->registerHook('displayAdminCustomers') &&
+            $this->registerHook('displayCustomerAccount') &&
+            $this->registerHook('actionObjectProinfoUpdateAfter');
     }
 
     public function uninstall()
@@ -81,7 +89,29 @@ class Lr_proinfo extends Module
         Configuration::deleteByName('LR_PROINFO_ADMIN_EMAIL');
         Configuration::deleteByName('LR_PROINFO_SEND_MAIL');
 
+        $this->uninstallModuleTab('AdminLr_Proinfo');
+
         return parent::uninstall();
+    }
+
+    private function installModuleTab($tabClass, $parent, $tabName)
+    {
+        $tab = new Tab();
+        $tab->active = 1;
+        $tab->class_name = $tabClass;
+        $tab->id_parent = (int)Tab::getIdFromClassName($parent);
+        $tab->position = Tab::getNewLastPosition($tab->id_parent);
+        $tab->module = $this->name;
+        foreach (Language::getLanguages(false) as $lang) {
+            $tab->name[(int)$lang['id_lang']] = $tabName;
+        }
+        return $tab->add();
+    }
+
+    private function uninstallModuleTab($tabClass)
+    {
+        $tab = new Tab((int)Tab::getIdFromClassName($tabClass));
+        return $tab->delete();
     }
 
     /**
@@ -114,7 +144,7 @@ class Lr_proinfo extends Module
 
         $this->context->smarty->assign(array(
             'module_dir' => $this->_path,
-            'version' => $this->version,
+            'lr_version' => $this->version,
         ));
         $this->html .= $this->context->smarty->fetch($this->local_path . 'views/templates/admin/header.tpl');
         $this->html .= $this->renderForm();
@@ -238,8 +268,7 @@ class Lr_proinfo extends Module
 
     protected function postValidation()
     {
-        if (
-            !Tools::getValue('LR_PROINFO_ADMIN_EMAIL')
+        if (!Tools::getValue('LR_PROINFO_ADMIN_EMAIL')
             || !Validate::isEmail(Tools::getValue('LR_PROINFO_ADMIN_EMAIL'))
         ) {
             $this->postErrors[] = $this->l(
@@ -247,8 +276,7 @@ class Lr_proinfo extends Module
             );
         }
 
-        if (
-            Tools::getValue('LR_PROINFO_SEND_MAIL')
+        if (Tools::getValue('LR_PROINFO_SEND_MAIL')
             && !Validate::isBool(Tools::getValue('LR_PROINFO_SEND_MAIL'))
         ) {
             $this->postErrors[] = $this->l(
@@ -256,8 +284,7 @@ class Lr_proinfo extends Module
             );
         }
 
-        if (
-            Tools::getValue('LR_PROINFO_ID_PAGE')
+        if (Tools::getValue('LR_PROINFO_ID_PAGE')
             && !Validate::isInt(Tools::getValue('LR_PROINFO_ID_PAGE'))
         ) {
             $this->postErrors[] = $this->l(
@@ -277,7 +304,7 @@ class Lr_proinfo extends Module
             Configuration::updateValue($key, Tools::getValue($key));
         }
 
-        $this->postSuccess[] = $this->l('Success !!! ');
+        $this->postSuccess[] = $this->l('Success !!!');
     }
 
     /**
@@ -298,7 +325,7 @@ class Lr_proinfo extends Module
     {
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
-        $this->registerHook('displayAdminCustomers');
+
     }
 
     public function hookActionObjectCustomerDeleteAfter($params)
@@ -312,10 +339,15 @@ class Lr_proinfo extends Module
 
     public function hookActionObjectProinfoAddAfter($params)
     {
+        if ((bool)Configuration::get('LR_PROINFO_SEND_MAIL') === false) {
+            return;
+        }
+
         $proInfo = $params['object'];
         $customer = new Customer(
             (int)$proInfo->id_customer
         );
+
         $address = new Address(
             (int)$proInfo->id_address
         );
@@ -346,6 +378,51 @@ class Lr_proinfo extends Module
             null,
             dirname(__FILE__) . '/mails/'
         );
+    }
+
+    public function hookActionObjectProinfoUpdateAfter($params)
+    {
+        if ((bool)Configuration::get('LR_PROINFO_SEND_MAIL') === false) {
+            return;
+        }
+
+        $proInfo = $params['object'];
+        $customer = new Customer(
+            (int)$proInfo->id_customer
+        );
+    
+        if ((bool)$proInfo->active === true && (bool)$proInfo->mailsent === false) {
+            
+            $sent = Mail::send(
+                Context::getContext()->language->id,
+                'customer',
+                $this->l('Your account has been validated'),
+                array(
+                    '{firstname}' => (string)$customer->firstname,
+                    '{lastname}' => (string)$customer->lastname,
+                    '{email}' => (string)$customer->email,
+                    '{message}' => $this->l('Your account has been validated')
+                ),
+                $customer->email,
+                $customer->firstname.' '.$customer->lastname,
+                Configuration::get('PS_SHOP_EMAIL'),
+                Configuration::get('PS_SHOP_NAME'),
+                null,
+                null,
+                dirname(__FILE__) . '/mails/'
+
+            );
+
+           
+            Db::getInstance()->update(
+                'lr_proinfo',
+                array(
+                    'mailsent' => $sent,
+                ),
+                'id_lr_proinfo = '.(int)$proInfo->id
+            );
+        } 
+        
     }
 
     public function hookDisplayTop()
@@ -382,11 +459,26 @@ class Lr_proinfo extends Module
         if (!Validate::isLoadedObject($obj)) {
             return;
         }
+        
+        $editUrl = 'index.php?controller=AdminLr_Proinfo&id_lr_proinfo='. (int)$obj->id. '&updatelr_proinfo&token='. Tools::getAdminTokenLite('AdminLr_Proinfo');
 
         $this->context->smarty->assign(array(
             'proInfo' => $obj,
+            'urlProInfo' => $editUrl,
         ));
 
         return $this->display(__FILE__, 'views/templates/admin/customer.tpl');
+    }
+
+    public function hookDisplayCustomerAccount()
+    {
+        $obj = ProInfo::getByIdCustomer(Context::getContext()->customer->id);
+
+        if (Validate::isLoadedObject($obj)) {
+            $this->context->smarty->assign(array(
+                'proInfoValide' => $obj->active,
+            ));
+        }
+        return $this->display(__FILE__, '/views/templates/hook/myaccount.tpl');
     }
 }
