@@ -245,8 +245,7 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
                     // Sinon on crée une nouvelle entrée
                     $proInfo = new ProInfo();
                 }
-
-                $proInfo = new ProInfo();
+                
                 $proInfo->id_customer = (int)$this->context->customer->id;
                 $proInfo->id_address = (int)Tools::getValue('lr_idaddress');
                 $proInfo->company = (string)Tools::getValue('lr_company');
