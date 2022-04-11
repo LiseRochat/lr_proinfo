@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 2007-2022 PrestaShop
  *
@@ -457,6 +456,62 @@ class Lr_proinfo extends Module
         ) {
             $this->postErrors[] = $this->l(
                 'Error : The field cms is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_SIRET')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_SIRET'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable siret is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_VAT_NUMBER')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_VAT_NUMBER'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable vat number is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_BANK_NAME')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_BANK_NAME'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable bank name is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_IBAN')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_IBAN'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable iban is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_BIC')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_BIC'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable bic is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_WEBSITE')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_WEBSITE'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable website is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_COMMENT')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_COMMENT'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable comment is not valid'
             );
         }
         
