@@ -23,6 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
+{* Ajout d'une condition : le compte doit etre créer pour avoir une card en plus sur sa fiche client *}
 {if !empty($id_lr_proinfo)}
 
 <a id="lr_proinfoLink" href="{$link->getModuleLink('lr_proinfo', 'proinfo', ['edit' => true])|escape:'htmlall':'UTF-8'}" title="{l s='Pro account' mod='lr_proinfo'}" rel="nofollow" class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
