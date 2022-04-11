@@ -65,13 +65,13 @@ class Lr_proinfo extends Module
         Configuration::updateValue('LR_PROINFO_ID_PAGE', 1);
         Configuration::updateValue('LR_PROINFO_ADMIN_EMAIL', 'liserochat@live.fr');
         Configuration::updateValue('LR_PROINFO_SEND_MAIL', false);
-        Configuration::updateValue('LR_PROINFO_SIRET', null);
-        Configuration::updateValue('LR_PROINFO_VAT_NUMBER', null);
-        Configuration::updateValue('LR_PROINFO_BANK_NAME', null);
-        Configuration::updateValue('LR_PROINFO_IBAN', null);
-        Configuration::updateValue('LR_PROINFO_BIC', null);
-        Configuration::updateValue('LR_PROINFO_WEBSITE', null);
-        Configuration::updateValue('LR_PROINFO_COMMENT', null);
+        Configuration::updateValue('LR_PROINFO_SIRET', false);
+        Configuration::updateValue('LR_PROINFO_VAT_NUMBER', false);
+        Configuration::updateValue('LR_PROINFO_BANK_NAME', false);
+        Configuration::updateValue('LR_PROINFO_IBAN', false);
+        Configuration::updateValue('LR_PROINFO_BIC', false);
+        Configuration::updateValue('LR_PROINFO_WEBSITE', false);
+        Configuration::updateValue('LR_PROINFO_COMMENT', false);
 
         $this->installModuleTab(
             'AdminLr_Proinfo',
