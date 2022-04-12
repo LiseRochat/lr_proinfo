@@ -34,7 +34,7 @@
 	<div class="col-md-6">
 		<p>
 			{l s='Version of module :' mod='lr_proinfo'}
-			{$version|escape:'htmlall':'UTF-8'}
+			{$lr_version|escape:'htmlall':'UTF-8'}
 		</p>	
 	</div>
 </div>
