@@ -24,7 +24,7 @@
 *}
 
 <div class="panel row">
-	<h3><i class="icon icon-smile"></i>{l s='Pro Info Module' mod='lr_proinfo'}</h3>
+	<h3><i class="icon icon-smile"></i>&nbsp;{l s='Pro Info Module' mod='lr_proinfo'}</h3>
 	<div class="col-md-6">
 
 		<p>{l s='Thanks to set this modul' mod='lr_proinfo'}</p>
