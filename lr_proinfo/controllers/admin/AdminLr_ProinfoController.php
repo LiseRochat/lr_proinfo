@@ -159,7 +159,7 @@ class AdminLr_ProinfoController extends ModuleAdminController
             }
         }
         $this->html .= $lists;
-        $this->html .= $this->context->smarty->fetch($this->local_path . 'views/templates/admin/documentation.tpl');
+        $this->html .= $this->context->smarty->fetch(_PS_MODULE_DIR_ .'/lr_proinfo/views/templates/admin/documentation.tpl');
         $this->html .= $this->context->smarty->fetch(
             _PS_MODULE_DIR_.'/lr_proinfo/views/templates/admin/footer.tpl'
         );
