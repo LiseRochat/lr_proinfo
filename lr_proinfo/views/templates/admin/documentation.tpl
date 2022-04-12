@@ -39,8 +39,10 @@
                 <h5>{l s='Customize Form' mod='lr_proinfo'}</h5>
                 <p>{l s='After install this module you just need to select which information you need to ask to customer to validate his pro account.' mod='lr_proinfo'}</p>
             </li>
+            <li>
+                <p> {l s='Congratulation !! Pro Info module is configured.' mod='lr_proinfo'}</p>
+            </li>
         </ol>
-        <p> {l s='Congratulation !! Pro Info module is configured.' mod='lr_proinfo'}</p>
 	</div>
     <div>
         <h4 class="bg-warning text-center">{l s='Where I can see all Pro Account ?' mod='lr_proinfo'}</h4>
