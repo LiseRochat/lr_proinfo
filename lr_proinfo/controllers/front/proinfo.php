@@ -143,8 +143,6 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
             'LR_PROINFO_BIC' => (bool)Configuration::get('LR_PROINFO_BIC'),
             'LR_PROINFO_WEBSITE' => (bool)Configuration::get('LR_PROINFO_WEBSITE'),
             'LR_PROINFO_COMMENT' => (bool)Configuration::get('LR_PROINFO_COMMENT'),
-            
-            
         ));
 
         $this->setTemplate('module:lr_proinfo/views/templates/front/proinfo.tpl');
@@ -182,8 +180,8 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
             }
 
             if (
-                !Tools::getValue('lr_siret')
-                || !Validate::isGenericName(Tools::getValue('lr_siret'))
+                Tools::getValue('lr_siret')
+                && !Validate::isGenericName(Tools::getValue('lr_siret'))
             ) {
                 $this->postErrors[] = $this->l(
                     'Error : The field siret is not valid'
@@ -191,8 +189,8 @@ class Lr_proinfoproinfoModuleFrontController extends ModuleFrontController
             }
 
             if (
-                !Tools::getValue('lr_vat_number')
-                || !Validate::isGenericName(Tools::getValue('lr_vat_number'))
+                Tools::getValue('lr_vat_number')
+                && !Validate::isGenericName(Tools::getValue('lr_vat_number'))
             ) {
                 $this->postErrors[] = $this->l(
                     'Error : The field vat number is not valid'
