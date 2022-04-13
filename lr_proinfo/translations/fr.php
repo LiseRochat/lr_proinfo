@@ -1,10 +1,9 @@
 <?php
-
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{lr_proinfo}prestashop>lr_proinfo_4685f6990c671a4b8a6946277c364be7'] = 'Info Pro par Lise';
+$_MODULE['<{lr_proinfo}prestashop>lr_proinfo_4685f6990c671a4b8a6946277c364be7'] = 'Compte Pro par Lise';
 $_MODULE['<{lr_proinfo}prestashop>lr_proinfo_646c6b5d867031ebe04053e6f1210a26'] = 'Ce module permet aux clients de créer un compte professionnel ';
-$_MODULE['<{lr_proinfo}prestashop>lr_proinfo_0a16d20c1513a62b433941369adfd4ed'] = 'Infos Compte Pro';
+$_MODULE['<{lr_proinfo}prestashop>lr_proinfo_0a16d20c1513a62b433941369adfd4ed'] = 'Comptes Pros';
 $_MODULE['<{lr_proinfo}prestashop>lr_proinfo_f4f70727dc34561dfde1a3c529b6205c'] = 'Réglages';
 $_MODULE['<{lr_proinfo}prestashop>lr_proinfo_5dd728422046b81308b09814c64a4763'] = 'Envoyer un mail à l\'administrateur';
 $_MODULE['<{lr_proinfo}prestashop>lr_proinfo_ba0601806f78355ed815141c6c441af1'] = 'Utiliser cette item pour envoyer un mail';
@@ -101,15 +100,15 @@ $_MODULE['<{lr_proinfo}prestashop>customer_59dee6f1de5ff2154e250cdb6c00080c'] = 
 $_MODULE['<{lr_proinfo}prestashop>documentation_5004a90a1b07dd19dbbdf6529aa9c11f'] = 'Que dois-je faire ?';
 $_MODULE['<{lr_proinfo}prestashop>documentation_d0e35d10209ecd4b778e4358826bdb8f'] = 'Comment je configure mon module Pro Info ?';
 $_MODULE['<{lr_proinfo}prestashop>documentation_35f2c83fd714bf4929622157ca6e8c45'] = 'Information Administrateur';
-$_MODULE['<{lr_proinfo}prestashop>documentation_2145491de371a99bacc9723362b3bb88'] = 'Renseigner les paramètres administrateurs. Sélectionnez si vous voulez recevoir un mail quand un client fait une demande de création pour un compte professionnel. Renseigner l\'adresse mail sur laquelle vous voulez  les recevoir.';
+$_MODULE['<{lr_proinfo}prestashop>documentation_2145491de371a99bacc9723362b3bb88'] = 'Renseignez les paramètres administrateurs. Sélectionnez si vous voulez recevoir un mail quand un client fait une demande de création pour un compte professionnel. Renseigner l\'adresse mail sur laquelle vous voulez  les recevoir.';
 $_MODULE['<{lr_proinfo}prestashop>documentation_87d49200bfc48e0bcfd3bae27d5616f3'] = 'Page CMS';
 $_MODULE['<{lr_proinfo}prestashop>documentation_ce62b3249144d6039a3f5521bc99402c'] = 'Créez une page CMS ou vous expliquerez à vos clients la procédure et les conditions pour créer un compte professionnel. Sélectionnez ensuite cette page dans le menu déroulant dédié. ';
 $_MODULE['<{lr_proinfo}prestashop>documentation_7864450ace97bc1e161f97b5b0ddc1c6'] = 'Personnalisation du formulaire';
-$_MODULE['<{lr_proinfo}prestashop>documentation_e7894195bfe4b7c39fbf75663a7cc227'] = 'Après avoir installer le module vous avez juste besoin de sélectionner les informations que vous voulez demander a vos clients lors de la création d\'un compte professionnel.';
+$_MODULE['<{lr_proinfo}prestashop>documentation_e7894195bfe4b7c39fbf75663a7cc227'] = 'Après avoir installé le module vous avez juste besoin de sélectionner les informations que vous voulez demander a vos clients lors de la création d\'un compte professionnel.';
 $_MODULE['<{lr_proinfo}prestashop>documentation_27f8b1a2fbe2713224289ec84906ed38'] = 'Félicitation !! Le module Pro Info est configuré.';
 $_MODULE['<{lr_proinfo}prestashop>documentation_0d175879985e0c416b034f09da986a49'] = 'Où puis-je voir mes clients pro ?';
 $_MODULE['<{lr_proinfo}prestashop>documentation_cf977a2e2fe0802c3b3879557de5fdd8'] = 'Dans le menu à gauche dans le backoffice de votre boutique, dans la catégorie client vous trouverez une section : Infos Pro. Cliquez dessus !';
-$_MODULE['<{lr_proinfo}prestashop>documentation_de862626e32c82d5fe51a447de1be9ab'] = 'Maitenant vous pouvez :';
+$_MODULE['<{lr_proinfo}prestashop>documentation_de862626e32c82d5fe51a447de1be9ab'] = 'Maintenant vous pouvez :';
 $_MODULE['<{lr_proinfo}prestashop>documentation_57f55d6deef2d0a21cbad480960e5677'] = 'Valider un compte professionnel';
 $_MODULE['<{lr_proinfo}prestashop>documentation_e058115dfd28ec5c40386ef4296e0ba1'] = 'Supprimer un compte professionnel';
 $_MODULE['<{lr_proinfo}prestashop>documentation_c22d872f41bd02317ca61a7253019cdc'] = 'Modifier un compte professionnel';
@@ -117,6 +116,15 @@ $_MODULE['<{lr_proinfo}prestashop>documentation_9779aa46f940ad04d13bd3297955d3cd
 $_MODULE['<{lr_proinfo}prestashop>documentation_010caf0b512c9cf2726e3e05d3b3be47'] = 'Voir et modifier un compte client';
 $_MODULE['<{lr_proinfo}prestashop>documentation_d32b8ce85ae5797d4a89bb2c391e3c08'] = 'Compte client';
 $_MODULE['<{lr_proinfo}prestashop>documentation_22572b146499802bbd8440d642707c1d'] = 'Dans chaque profil client, vous pouvez voir les informations principales concernant le compte professionnel.  Si celui-ci en possède un et qu\'il est actif';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_5004a90a1b07dd19dbbdf6529aa9c11f'] = 'Que dois-je faire ?';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_de862626e32c82d5fe51a447de1be9ab'] = 'Maintenant vous pouvez :';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_57f55d6deef2d0a21cbad480960e5677'] = 'Valider un compte professionnel';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_e058115dfd28ec5c40386ef4296e0ba1'] = 'Supprimer un compte professionnel';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_c22d872f41bd02317ca61a7253019cdc'] = 'Modifier un compte professionnel\'';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_9779aa46f940ad04d13bd3297955d3cd'] = 'Chercher un compte professionnel';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_010caf0b512c9cf2726e3e05d3b3be47'] = 'Voir et modifier un compte client';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_d32b8ce85ae5797d4a89bb2c391e3c08'] = 'Compte client';
+$_MODULE['<{lr_proinfo}prestashop>documentation_pro_infos_22572b146499802bbd8440d642707c1d'] = 'Dans chaque profil client, vous pouvez voir les informations principales concernant le compte professionnel.  Si celui-ci en possède un et qu\'il est actif';
 $_MODULE['<{lr_proinfo}prestashop>footer_f63230a3e53fae8ebdddf087380629a2'] = 'Module Pro Info';
 $_MODULE['<{lr_proinfo}prestashop>footer_66d9af9262ba6475000e8984d5c96a5d'] = 'Merci d\'avoir installer ce module';
 $_MODULE['<{lr_proinfo}prestashop>footer_065cc6881d7d973434d38559a996c692'] = 'Version du module';
@@ -142,7 +150,7 @@ $_MODULE['<{lr_proinfo}prestashop>proinfo_d62f6d57ef45ee43f19e5108fffb1b2f'] = '
 $_MODULE['<{lr_proinfo}prestashop>proinfo_2fe411e32b814dcc6dc492c3196d189d'] = 'Votre site internet';
 $_MODULE['<{lr_proinfo}prestashop>proinfo_0be8406951cdfda82f00f79328cf4efc'] = 'Commentaire';
 $_MODULE['<{lr_proinfo}prestashop>proinfo_a4d3b161ce1309df1c4e25df28694b7b'] = 'Envoyer';
-$_MODULE['<{lr_proinfo}prestashop>myaccount_aebd1f21b97b811f6b5a2eeda92101f0'] = 'Compte Pro';
+$_MODULE['<{lr_proinfo}prestashop>myaccount_aebd1f21b97b811f6b5a2eeda92101f0'] = 'Mon Compte Pro';
 $_MODULE['<{lr_proinfo}prestashop>myaccount_3ec2b5ac8a0d6a836850657c0ebfde15'] = '(actif)';
 $_MODULE['<{lr_proinfo}prestashop>myaccount_44aa13304026bb46ad79f4151f16634a'] = '(en attente de validation)';
 $_MODULE['<{lr_proinfo}prestashop>top_bd10ae8e26034e184ff1f014667b6d13'] = 'Créez votre compte professionnel ';
