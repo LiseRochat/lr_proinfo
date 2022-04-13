@@ -254,6 +254,8 @@ class AdminLr_ProinfoController extends ModuleAdminController
                 array(
                     'type' => 'switch',
                     'label' => $this->l('Status'),
+                    'desc' => $this->l('Select status of pro account'),
+                    'hint' => $this->l('Disable or Enable pro account'),
                     'name' => 'active',
                     'is_bool' => true,
                     'values' => array(
@@ -261,15 +263,11 @@ class AdminLr_ProinfoController extends ModuleAdminController
                             'id' => 'active_on',
                             'value' => 1,
                             'label' => $this->l('Enable'),
-                            'desc' => $this->l('Select to active'),
-                            'hint' => $this->l('Active pro account')
                         ),
                         array(
                             'id' => 'active_off',
                             'value' => 0,
-                            'label' => $this->l('Disable'),
-                            'desc' => $this->l('Select to disable'),
-                            'hint' => $this->l('Disable pro account')
+                            'label' => $this->l('Disable')
                         ),
 
                     )
