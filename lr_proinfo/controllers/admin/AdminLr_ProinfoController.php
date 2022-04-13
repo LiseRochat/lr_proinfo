@@ -83,23 +83,15 @@ class AdminLr_ProinfoController extends ModuleAdminController
             'company' => array(
                 'title' => $this->l('Company'),
                 'align' => 'left',
-                'width' => 'auto'
-            ),
-            'siret' => array(
-                'title' => $this->l('Siret'),
-                'align' => 'left',
-                'width' => 'auto'
-            ),
-            'manager' => array(
-                'title' => $this->l('Manager'),
-                'align' => 'left',
-                'width' => 'auto'
+                'width' => 'auto',
+                'havingFilter' => true,
+                'filter_key' => 'l!company'
             ),
             'active' => array(
                 'title' => $this->l('active'),
                 'type' => 'bool',
                 'active' => 'statusactive'
-            ),
+            )
         );
 
         $module = Module::getInstanceByName('lr_proinfo');
@@ -194,9 +186,9 @@ class AdminLr_ProinfoController extends ModuleAdminController
             'input' => array(
                 array(
                     'type' => 'text',
-                    'label' => $this->l('Manager'),
-                    'desc' => $this->l('Manager'),
-                    'hint' => $this->l('Manager'),
+                    'label' => $this->l('Manager name'),
+                    'desc' => $this->l('Update manager name'),
+                    'hint' => $this->l('Change nothing if you dont want update manager name'),
                     'required' => true,
                     'name' => 'manager'
                 ),
@@ -210,60 +202,60 @@ class AdminLr_ProinfoController extends ModuleAdminController
                 ),
                 array(
                     'type' => 'text',
-                    'label' => $this->l('Company'),
-                    'desc' => $this->l('Company'),
-                    'hint' => $this->l('Company'),
+                    'label' => $this->l('Company name'),
+                    'desc' => $this->l('Update name of Company'),
+                    'hint' => $this->l('Change nothing if you dont want update name of Company'),
                     'required' => true,
                     'name' => 'company'
                 ),
                 array(
                     'type' => 'text',
-                    'label' => $this->l('Siret'),
-                    'desc' => $this->l('Siret'),
-                    'hint' => $this->l('Siret'),
-                    'name' => 'siret'
-                ),
-                array(
-                    'type' => 'text',
-                    'label' => $this->l('iban'),
-                    'desc' => $this->l('iban'),
-                    'hint' => $this->l('iban'),
-                    'name' => 'iban'
-                ),
-                array(
-                    'type' => 'text',
-                    'label' => $this->l('vat_number'),
-                    'desc' => $this->l('vat_number'),
-                    'hint' => $this->l('vat_number'),
+                    'label' => $this->l('VAT Number of company'),
+                    'desc' => $this->l('Update VAT Number of company'),
+                    'hint' => $this->l('Change nothing if you dont want update VAT Number of company'),
                     'name' => 'vat_number'
                 ),
                 array(
                     'type' => 'text',
-                    'label' => $this->l('website'),
-                    'desc' => $this->l('website'),
-                    'hint' => $this->l('website'),
-                    'name' => 'website'
-                ),
-                array(
-                    'type' => 'text',
-                    'label' => $this->l('bank'),
-                    'desc' => $this->l('bank'),
-                    'hint' => $this->l('bank'),
+                    'label' => $this->l('Name Bank of company'),
+                    'desc' => $this->l('Update name bank of company'),
+                    'hint' => $this->l('Change nothing if you dont want update name bank of company'),
                     'name' => 'bank'
                 ),
                 array(
+                    'type' => 'text',
+                    'label' => $this->l('SIRET of company'),
+                    'desc' => $this->l('Update SIRET number of company'),
+                    'hint' => $this->l('Change nothing if you dont want update SIRET of company'),
+                    'name' => 'siret'
+                ),
+                array(
+                    'type' => 'text',
+                    'label' => $this->l('IBAN of company'),
+                    'desc' => $this->l('Update IBAN number of company'),
+                    'hint' => $this->l('Change nothing if you dont want update IBAN of company'),
+                    'name' => 'iban'
+                ),
+                
+                array(
+                    'type' => 'text',
+                    'label' => $this->l('Website of Company'),
+                    'desc' => $this->l('Update Website of Company'),
+                    'hint' => $this->l('Change nothing if you dont want update website of company'),
+                    'name' => 'website'
+                ),
+                
+                array(
                     'type' => 'textarea',
-                    'label' => $this->l('comment'),
-                    'desc' => $this->l('comment'),
-                    'hint' => $this->l('comment'),
+                    'label' => $this->l('Comment pro customer'),
+                    'desc' => $this->l('Update comment on pro account customer'),
+                    'hint' => $this->l('Cahnge nothing if you dont want update comment pro custumer'),
                     'name' => 'comment',
                     //'autoload_rte' => true,
                 ),
                 array(
                     'type' => 'switch',
-                    'label' => $this->l('active'),
-                    'desc' => $this->l('active'),
-                    'hint' => $this->l('active'),
+                    'label' => $this->l('Status'),
                     'name' => 'active',
                     'is_bool' => true,
                     'values' => array(
@@ -271,11 +263,15 @@ class AdminLr_ProinfoController extends ModuleAdminController
                             'id' => 'active_on',
                             'value' => 1,
                             'label' => $this->l('Enable'),
+                            'desc' => $this->l('Select to active'),
+                            'hint' => $this->l('Active pro account')
                         ),
                         array(
                             'id' => 'active_off',
                             'value' => 0,
                             'label' => $this->l('Disable'),
+                            'desc' => $this->l('Select to disable'),
+                            'hint' => $this->l('Disable pro account')
                         ),
 
                     )
