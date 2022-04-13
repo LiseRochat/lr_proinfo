@@ -59,7 +59,7 @@
         {if !isset($successes) }
             <form method="post" name="proInfoForm" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="lr_idaddress">{l s='Address of Your Company' mod='lr_proinfo'}<span class="required">*</span></label>
+                    <label for="lr_idaddress"><span class="required">* </span>{l s='Address of Your Company' mod='lr_proinfo'}<span class="required">*</span></label>
                     <select class="form-control" name="lr_idaddress" id="lr_idaddress">
                         {foreach from=$addresses item=address}
                             <option value="{$address.id_address|escape:'htmlall':'UTF-8'}">
