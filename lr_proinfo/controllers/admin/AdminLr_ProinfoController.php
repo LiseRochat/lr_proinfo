@@ -84,8 +84,6 @@ class AdminLr_ProinfoController extends ModuleAdminController
                 'title' => $this->l('Company'),
                 'align' => 'left',
                 'width' => 'auto',
-                'havingFilter' => true,
-                'filter_key' => 'l!company'
             ),
             'active' => array(
                 'title' => $this->l('active'),
