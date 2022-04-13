@@ -72,23 +72,23 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="lr_company"><span class="required">* </span>{l s='Name of Your Company' mod='lr_proinfo'}<span class="required">*</span></label>
+                    <label for="lr_company"><span class="required">* </span>{l s='Name of Your Company' mod='lr_proinfo'}</label>
                     <input type="text" class="form-control" id="lr_company" name="lr_company" placeholder="{l s='Name of Your Company' mod='lr_proinfo'}" {if isset($lr_company) && $lr_company} value="{$lr_company|escape:'htmlall':'UTF-8'}"{/if} required>
                 </div>
                 <div class="form-group">
-                    <label for="lr_manager"><span class="required">* </span>{l s='Name of Manager' mod='lr_proinfo'}<span class="required">*</span></label>
+                    <label for="lr_manager"><span class="required">* </span>{l s='Name of Manager' mod='lr_proinfo'}</label>
                     <input type="text" class="form-control" id="lr_manager" name="lr_manager" placeholder="{l s='Name of Your Manager' mod='lr_proinfo'}" {if isset($lr_manager) && $lr_manager} value="{$lr_manager|escape:'htmlall':'UTF-8'}"{/if} required> 
                 </div>
                 {if $LR_PROINFO_SIRET == true}
                     <div class="form-group">
                         <label for="lr_siret">{l s='Your SIRET' mod='lr_proinfo'}</label>
-                        <input type="text" class="form-control" id="lr_siret" name="lr_siret" placeholder="{l s='Your Siret' mod='lr_proinfo'}" {if isset($lr_siret) && $lr_siret} value="{$lr_siret|escape:'htmlall':'UTF-8'}"{/if}required>
+                        <input type="text" class="form-control" id="lr_siret" name="lr_siret" placeholder="{l s='Your Siret' mod='lr_proinfo'}" {if isset($lr_siret) && $lr_siret} value="{$lr_siret|escape:'htmlall':'UTF-8'}"{/if}>
                     </div>
                 {/if}
                 {if $LR_PROINFO_VAT_NUMBER == true}
                     <div class="form-group">
                         <label for="lr_vat_number">{l s='Your VAT Number' mod='lr_proinfo'}</label>
-                        <input type="text" class="form-control" id="lr_vat_number" name="lr_vat_number" placeholder="{l s='Your Vat Number' mod='lr_proinfo'}" {if isset($lr_vat_number) && $lr_vat_number} value="{$lr_vat_number|escape:'htmlall':'UTF-8'}"{/if}required>
+                        <input type="text" class="form-control" id="lr_vat_number" name="lr_vat_number" placeholder="{l s='Your Vat Number' mod='lr_proinfo'}" {if isset($lr_vat_number) && $lr_vat_number} value="{$lr_vat_number|escape:'htmlall':'UTF-8'}"{/if}>
                     </div>
                 {/if}
                 {if $LR_PROINFO_BANK_NAME }
