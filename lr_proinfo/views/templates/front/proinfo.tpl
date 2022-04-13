@@ -72,11 +72,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="lr_company">{l s='Name of Your Company' mod='lr_proinfo'}<span class="required">*</span></label>
+                    <label for="lr_company"><span class="required">* </span>{l s='Name of Your Company' mod='lr_proinfo'}<span class="required">*</span></label>
                     <input type="text" class="form-control" id="lr_company" name="lr_company" placeholder="{l s='Name of Your Company' mod='lr_proinfo'}" {if isset($lr_company) && $lr_company} value="{$lr_company|escape:'htmlall':'UTF-8'}"{/if} required>
                 </div>
                 <div class="form-group">
-                    <label for="lr_manager">{l s='Name of Manager' mod='lr_proinfo'}<span class="required">*</span></label>
+                    <label for="lr_manager"><span class="required">* </span>{l s='Name of Manager' mod='lr_proinfo'}<span class="required">*</span></label>
                     <input type="text" class="form-control" id="lr_manager" name="lr_manager" placeholder="{l s='Name of Your Manager' mod='lr_proinfo'}" {if isset($lr_manager) && $lr_manager} value="{$lr_manager|escape:'htmlall':'UTF-8'}"{/if} required> 
                 </div>
                 {if $LR_PROINFO_SIRET == true}
