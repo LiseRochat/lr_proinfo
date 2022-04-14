@@ -34,10 +34,10 @@ After a pro account validate, you assign a customer in a categeroy. That all.
 
 ### Visual
 Here is an overview of the features of the lr_proinfo module. </br>
-<img src="lr_proinfo/img/screenshot01.png" alt="screenshot module lr_proinfo" width="80" height="80">
-<img src="lr_proinfo/img/screenshot02.png" alt="screenshot module lr_proinfo" width="80" height="80">
-<img src="lr_proinfo/img/screenshot03.png" alt="screenshot module lr_proinfo" width="80" height="80">
-<img src="lr_proinfo/img/screenshot04.png" alt="screenshot module lr_proinfo" width="80" height="80">
+<img src="lr_proinfo/views/img/screenshot01.png" alt="screenshot module lr_proinfo">
+<img src="lr_proinfo/views/img/screenshot02.png" alt="screenshot module lr_proinfo">
+<img src="lr_proinfo/views/img/screenshot03.png" alt="screenshot module lr_proinfo">
+<img src="lr_proinfo/views/img/screenshot04.png" alt="screenshot module lr_proinfo">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
