@@ -39,6 +39,8 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'lr_proinfo` (
     `bic` varchar(255) DEFAULT NULL,
     `website` varchar(255) DEFAULT NULL,
     `comment` text DEFAULT NULL,
+    `company_id` varchar(255) DEFAULT NULL,
+    `company_document` varchar(255) DEFAULT NULL,
     `active` tinyint(1) DEFAULT 0,
     `mailsent` tinyint(1) DEFAULT 0,
     PRIMARY KEY  (`id_lr_proinfo`,`id_customer`)
