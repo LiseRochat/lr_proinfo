@@ -43,6 +43,8 @@ class ProInfo extends ObjectModel
     public $comment;
     public $active;
     public $mailsent;
+    public $company_id;
+    public $company_document;
 
     public static $definition = [
         'table' => 'lr_proinfo',
@@ -60,7 +62,9 @@ class ProInfo extends ObjectModel
             'website' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
             'comment' => ['type' => self::TYPE_HTML, 'validate' => 'isCleanHTML'],
             'active' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
-            'mailsent' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool']
+            'mailsent' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
+            'company_id' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
+            'company_document' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
         ],
     ];
 
