@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 2007-2022 PrestaShop
  *
@@ -71,6 +72,8 @@ class Lr_proinfo extends Module
         Configuration::updateValue('LR_PROINFO_BIC', false);
         Configuration::updateValue('LR_PROINFO_WEBSITE', false);
         Configuration::updateValue('LR_PROINFO_COMMENT', false);
+        Configuration::updateValue('LR_PROINFO_ID', false);
+        Configuration::updateValue('LR_PROINFO_COMPANY', false);
 
         $this->installModuleTab(
             'AdminLr_Proinfo',
@@ -102,6 +105,8 @@ class Lr_proinfo extends Module
         Configuration::deleteByName('LR_PROINFO_BIC');
         Configuration::deleteByName('LR_PROINFO_WEBSITE');
         Configuration::deleteByName('LR_PROINFO_COMMENT');
+        Configuration::deleteByName('LR_PROINFO_ID');
+        Configuration::deleteByName('LR_PROINFO_COMPANY');
 
         $this->uninstallModuleTab('AdminLr_Proinfo');
 
@@ -401,6 +406,46 @@ class Lr_proinfo extends Module
                             )
                         ),
                     ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You authorize pro customer to send photocopy identity card'),
+                        'name' => 'LR_PROINFO_ID',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you authorize pro customer send you his photocopy identity card'),
+                        'hint' => $this->l('Set not if you dont authorize pro customer send his photocopy identity card'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('You authorize pro customer to send company document'),
+                        'name' => 'LR_PROINFO_COMPANY',
+                        'is_bool' => true,
+                        'desc' => $this->l('Use this if you authorize pro customer send you his company document'),
+                        'hint' => $this->l('Set not if you dont authorize pro customer send his company document'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->l('Disabled')
+                            )
+                        ),
+                    ),
 
                 ),
 
@@ -428,6 +473,8 @@ class Lr_proinfo extends Module
             'LR_PROINFO_BIC' => Configuration::get('LR_PROINFO_BIC'),
             'LR_PROINFO_WEBSITE' => Configuration::get('LR_PROINFO_WEBSITE'),
             'LR_PROINFO_COMMENT' => Configuration::get('LR_PROINFO_COMMENT'),
+            'LR_PROINFO_ID' => Configuration::get('LR_PROINFO_ID'),
+            'LR_PROINFO_COMPANY' => Configuration::get('LR_PROINFO_COMPANY'),
         );
     }
 
@@ -510,6 +557,22 @@ class Lr_proinfo extends Module
         if (
             Tools::getValue('LR_PROINFO_COMMENT')
             && !Validate::isBool(Tools::getValue('LR_PROINFO_COMMENT'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable comment is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_ID')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_ID'))
+        ) {
+            $this->postErrors[] = $this->l(
+                'Error : The field enable comment is not valid'
+            );
+        }
+        if (
+            Tools::getValue('LR_PROINFO_COMPANY')
+            && !Validate::isBool(Tools::getValue('LR_PROINFO_COMPANY'))
         ) {
             $this->postErrors[] = $this->l(
                 'Error : The field enable comment is not valid'
